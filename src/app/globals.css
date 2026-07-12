@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #F5F1E8; /* brand-cream */
+    color: #2F241F; /* Very dark earthen clay/brown for accessible body text */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: #F5F1E8;
+    overflow-x: hidden;
+  }
+
+  /* Custom focus outline for keyboard accessibility */
+  *:focus-visible {
+    outline: 2px solid #C1440E; /* brand-red */
+    outline-offset: 4px;
+  }
+
+  /* Custom scrollbar to match the editorial premium theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F5F1E8;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #8B5A3C;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3A5F0B;
+  }
+}
+
+@layer utilities {
+  .text-shadow-subtle {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-cinematic {
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Letter spacing for headlines */
+  .tracking-editorial {
+    letter-spacing: -0.02em;
+  }
+  
+  /* Text reveal utility for elegant editorial entrance */
+  .mask-reveal {
+    mask-image: linear-gradient(to bottom, black 0%, black 100%);
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+  }
+}
+
+/* Base style resets and customizations */
+::selection {
+  background-color: #C02C0C; /* brand-red */
+  color: #F6F2E9; /* brand-cream */
+}
