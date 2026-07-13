@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function FloatingSocials() {
   return (
-    <div className="fixed top-1/2 -translate-y-1/2 right-6 z-40 hidden sm:flex flex-col items-center space-y-3 bg-brand-green/95 backdrop-blur-md border border-brand-cream/10 p-2.5 rounded-full shadow-xl">
+    <div className="fixed top-1/2 -translate-y-1/2 right-4 sm:right-6 z-40 flex flex-col items-center space-y-3 bg-brand-green/95 backdrop-blur-md border border-brand-cream/10 p-2 sm:p-2.5 rounded-full shadow-xl">
       
       {/* WhatsApp Link */}
       <motion.a
