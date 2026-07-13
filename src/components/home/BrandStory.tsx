@@ -81,7 +81,7 @@ export default function BrandStory() {
             </h3>
             <div className="w-8 h-[1px] bg-brand-gold mx-auto" />
             <p className="text-brand-clay/90 font-sans text-xs md:text-sm leading-relaxed">
-              Prepared in a fully automated state of art facility with no hand/human interaction.
+              Prepared under strict hygienic conditions using traditional slow-milling methods to guarantee absolute cleanliness and purity.
             </p>
           </motion.div>
 

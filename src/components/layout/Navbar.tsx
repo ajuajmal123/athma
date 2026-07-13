@@ -68,7 +68,7 @@ export default function Navbar() {
           {/* Logo Image */}
           <a
             href="/"
-            className="relative block h-10 w-28 md:h-12 md:w-36 transition-transform duration-300 hover:scale-105"
+            className="relative block h-14 w-[104px] md:h-20 md:w-[150px] transition-transform duration-300 hover:scale-105"
           >
             <Image
               src="/images/image.png"

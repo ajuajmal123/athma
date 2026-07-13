@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 border-b border-brand-cream/10 pb-16">
           {/* Brand Info */}
           <div className="space-y-6">
-            <div className="relative h-12 w-32 md:h-14 md:w-36">
+            <div className="relative h-16 w-44 md:h-20 md:w-56">
               <Image
                 src="/images/image.png"
                 alt="ATHMA Logo"
@@ -107,16 +107,23 @@ export default function Footer() {
             <h4 className="font-serif text-lg text-brand-gold mb-6 font-medium">The Spice Kitchen</h4>
             <ul className="space-y-4 text-sm text-brand-cream/80">
               <li className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
-                <span>Athma Spices Estate, Kumily Hills, Idukki District, Kerala, India</span>
+                <a
+                  href="https://maps.app.goo.gl/NoH5HWz7BbKZpsd49"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start space-x-3 hover:text-brand-gold transition-colors"
+                >
+                  <MapPin className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
+                  <span>ATHMA SPICES, Pollambara, Puthusery P.O., Mananthavady, Wayanad - 670645</span>
+                </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-brand-gold shrink-0" />
-                <span>+91 4869 224050</span>
+                <a href="tel:+917012646402" className="hover:text-brand-gold transition-colors">+91 70126 46402</a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-brand-gold shrink-0" />
-                <span>hello@athmaspices.com</span>
+                <a href="mailto:athmaspices@gmail.com" className="hover:text-brand-gold transition-colors">athmaspices@gmail.com</a>
               </li>
             </ul>
           </div>

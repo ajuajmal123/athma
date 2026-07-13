@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/data/products";
@@ -9,9 +9,21 @@ import Link from "next/link";
 import { ArrowLeft, Sparkles, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Product } from "@/types";
+import { useSearchParams } from "next/navigation";
 
-export default function ProductsPage() {
+function ProductsCatalog() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("id");
+
+  useEffect(() => {
+    if (productId) {
+      const matched = products.find((p) => p.id === productId);
+      if (matched) {
+        setSelectedProduct(matched);
+      }
+    }
+  }, [productId]);
 
   return (
     <div className="relative min-h-screen bg-brand-cream font-sans">
@@ -45,7 +57,7 @@ export default function ProductsPage() {
             Our Spice Catalog.
           </h1>
           <p className="text-brand-clay/90 text-sm md:text-base font-sans leading-relaxed pt-2">
-            Every bag of Athma represents spices sourced from estate farms, ground slowly to preserve aroma oils, and packaged in a fully automated state-of-the-art facility with no hand/human interaction.
+            Every bag of Athma represents spices sourced from estate farms, ground slowly to preserve essential aroma oils, and packaged under strict hygienic standards in our clean facility to guarantee absolute purity.
           </p>
         </div>
 
@@ -229,5 +241,13 @@ export default function ProductsPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-brand-cream" />}>
+      <ProductsCatalog />
+    </Suspense>
   );
 }

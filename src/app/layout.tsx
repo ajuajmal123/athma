@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import FloatingSocials from "@/components/layout/FloatingSocials";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}>
       <body className="min-h-screen bg-brand-cream text-brand-clay antialiased selection:bg-brand-red selection:text-brand-cream">
         {children}
+        <FloatingSocials />
       </body>
     </html>
   );

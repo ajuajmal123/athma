@@ -53,9 +53,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-cream font-bold leading-tight tracking-editorial text-shadow-cinematic"
+          className="font-serif text-2xl md:text-4xl lg:text-5xl text-brand-cream font-bold leading-tight tracking-editorial text-shadow-cinematic"
         >
-          The Soul of <span className="text-brand-gold italic font-normal font-serif">Curry.</span>
+          Signature of Perfect <span className="text-brand-gold italic font-normal font-serif">taste.</span>
         </motion.h1>
       </div>
 

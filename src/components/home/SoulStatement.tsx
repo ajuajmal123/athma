@@ -67,7 +67,6 @@ export default function SoulStatement() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="text-brand-cream/80 text-xs md:text-sm font-sans tracking-widest uppercase font-semibold max-w-md mx-auto leading-relaxed"
         >
-          Traditional slow milling preserving essential oils. <br />
           No colorants. No preservatives. Pure curry soul.
         </motion.p>
 

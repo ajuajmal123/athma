@@ -18,9 +18,16 @@ export default function ContactSection() {
     if (!formState.name || !formState.email || !formState.message) return;
     
     setStatus("submitting");
+    
+    // Construct WhatsApp message details before clearing state
+    const whatsappText = `Hello Athma Spices,\n\nI have submitted an enquiry on the website:\n\n*Name*: ${formState.name}\n*Email*: ${formState.email}\n*Type*: ${formState.subject}\n*Message*: ${formState.message}`;
+    const whatsappUrl = `https://wa.me/917012646402?text=${encodeURIComponent(whatsappText)}`;
+
     // Simulate API request
     setTimeout(() => {
       setStatus("success");
+      // Redirect to WhatsApp in a new tab
+      window.open(whatsappUrl, "_blank");
       setFormState({ name: "", email: "", subject: "General Inquiry", message: "" });
     }, 1500);
   };
@@ -46,7 +53,7 @@ export default function ContactSection() {
               </div>
               <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-editorial leading-tight">
                 Visit The Spice <br />
-                <span className="text-brand-gold italic font-normal">Kitchen & Estate.</span>
+                <span className="text-brand-gold italic font-normal">Kitchen & Mill.</span>
               </h2>
               <p className="text-brand-cream/70 text-sm leading-relaxed max-w-md pt-2">
                 Whether you are a chef looking for bespoke spice milling, a distributor, or a culinary enthusiast, our doors are always open. Reach out or visit us in the hills.
@@ -55,48 +62,59 @@ export default function ContactSection() {
 
             {/* Details List */}
             <div className="space-y-8">
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 rounded-full border border-brand-cream/15 hover:border-brand-gold hover:text-brand-gold flex items-center justify-center shrink-0 transition-colors duration-300">
+              <a
+                href="https://maps.app.goo.gl/NoH5HWz7BbKZpsd49"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start space-x-4 group hover:opacity-90 transition-opacity"
+              >
+                <div className="w-12 h-12 rounded-full border border-brand-cream/15 group-hover:border-brand-gold group-hover:text-brand-gold flex items-center justify-center shrink-0 transition-colors duration-300">
                   <MapPin className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-serif text-sm font-semibold tracking-wider uppercase text-brand-gold">
-                    Our Estate Address
+                    Our Mill Address
                   </h4>
-                  <p className="text-sm text-brand-cream/80 leading-relaxed">
-                    Athma Spices Estate, Kumily Hills,<br />
-                    Idukki District, Kerala, India
+                  <p className="text-sm text-brand-cream/80 leading-relaxed group-hover:text-brand-cream transition-colors">
+                    ATHMA SPICES, Pollambara,<br />
+                    Puthusery P.O., Mananthavady, Wayanad - 670645
                   </p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 rounded-full border border-brand-cream/15 hover:border-brand-gold hover:text-brand-gold flex items-center justify-center shrink-0 transition-colors duration-300">
+              <a
+                href="tel:+917012646402"
+                className="flex items-start space-x-4 group hover:opacity-90 transition-opacity"
+              >
+                <div className="w-12 h-12 rounded-full border border-brand-cream/15 group-hover:border-brand-gold group-hover:text-brand-gold flex items-center justify-center shrink-0 transition-colors duration-300">
                   <Phone className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-serif text-sm font-semibold tracking-wider uppercase text-brand-gold">
                     Call Direct
                   </h4>
-                  <p className="text-sm text-brand-cream/80 hover:text-brand-cream transition-colors">
-                    +91 4869 224050
+                  <p className="text-sm text-brand-cream/80 group-hover:text-brand-cream transition-colors">
+                    +91 70126 46402
                   </p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 rounded-full border border-brand-cream/15 hover:border-brand-gold hover:text-brand-gold flex items-center justify-center shrink-0 transition-colors duration-300">
+              <a
+                href="mailto:athmaspices@gmail.com"
+                className="flex items-start space-x-4 group hover:opacity-90 transition-opacity"
+              >
+                <div className="w-12 h-12 rounded-full border border-brand-cream/15 group-hover:border-brand-gold group-hover:text-brand-gold flex items-center justify-center shrink-0 transition-colors duration-300">
                   <Mail className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-serif text-sm font-semibold tracking-wider uppercase text-brand-gold">
                     Email Correspondence
                   </h4>
-                  <p className="text-sm text-brand-cream/80 hover:text-brand-cream transition-colors">
-                    hello@athmaspices.com
+                  <p className="text-sm text-brand-cream/80 group-hover:text-brand-cream transition-colors">
+                    athmaspices@gmail.com
                   </p>
                 </div>
-              </div>
+              </a>
 
               <div className="flex items-start space-x-4 group">
                 <div className="w-12 h-12 rounded-full border border-brand-cream/15 flex items-center justify-center shrink-0">
@@ -104,10 +122,10 @@ export default function ContactSection() {
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-serif text-sm font-semibold tracking-wider uppercase text-brand-gold">
-                    Estate Hours
+                    Mill Hours
                   </h4>
                   <p className="text-sm text-brand-cream/80">
-                    Monday — Saturday: 9:00 AM – 5:00 PM IST
+                    Monday — Saturday: 9:00 AM – 6:00 PM IST
                   </p>
                 </div>
               </div>
@@ -174,7 +192,7 @@ export default function ContactSection() {
                       <option className="bg-brand-green-dark" value="General Inquiry">General Inquiry</option>
                       <option className="bg-brand-green-dark" value="Bespoke Milling">Bespoke Spice Milling</option>
                       <option className="bg-brand-green-dark" value="Wholesale & Export">Wholesale & Export</option>
-                      <option className="bg-brand-green-dark" value="Estate Tour">Estate & Facility Tour</option>
+                      <option className="bg-brand-green-dark" value="Mill Visit">Mill Visit & Tasting</option>
                     </select>
                   </div>
 
@@ -224,7 +242,7 @@ export default function ContactSection() {
                   <div className="space-y-2 max-w-md">
                     <h3 className="font-serif text-3xl font-bold">Inquiry Sent.</h3>
                     <p className="text-sm text-brand-cream/80 leading-relaxed">
-                      Thank you for contacting Athma. Our estate office will review your request and reach out to you within 24 hours.
+                      Thank you for contacting Athma. Our mill office will review your request and reach out to you within 24 hours.
                     </p>
                   </div>
                   <button
