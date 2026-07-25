@@ -28,7 +28,7 @@ export default function FloatingSocials() {
 
       {/* Instagram Link */}
       <motion.a
-        href="https://instagram.com/athmaspices"
+        href="https://www.instagram.com/athma_spices?igsh=bWpqYzd0YTRnZ3Fz"
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.15, y: -2 }}
@@ -40,7 +40,7 @@ export default function FloatingSocials() {
 
       {/* Facebook Link */}
       <motion.a
-        href="https://facebook.com/athmaspices"
+        href="https://www.facebook.com/share/1D3mFhgwex/"
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.15, y: -2 }}

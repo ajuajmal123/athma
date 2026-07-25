@@ -27,14 +27,18 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.instagram.com/athma_spices?igsh=bWpqYzd0YTRnZ3Fz"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-brand-cream/10 hover:bg-brand-gold hover:text-brand-green flex items-center justify-center transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/share/1D3mFhgwex/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-brand-cream/10 hover:bg-brand-gold hover:text-brand-green flex items-center justify-center transition-colors duration-300"
                 aria-label="Facebook"
               >

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const images = [
   "/images/hero_slide_1.png?v=2",
@@ -48,15 +49,43 @@ export default function Hero() {
       </div>
 
       {/* Tagline Overlay (Centered, Minimal, Bold Serif Editorial Typography) */}
-      <div className="relative z-20 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-20 max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
+        {/* Slogan Quality Badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ scale: 1.05, rotate: 2 }}
+          className="mb-8 w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-brand-gold/50 shadow-2xl bg-white p-1.5 flex items-center justify-center cursor-pointer transition-all duration-300"
+        >
+          <div className="w-full h-full rounded-full overflow-hidden relative">
+            <Image
+              src="/images/slogan.jpeg"
+              alt="Signature of Perfect Taste - Quality Seal"
+              fill
+              className="object-cover scale-[1.05]"
+              priority
+            />
+          </div>
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif text-2xl md:text-4xl lg:text-5xl text-brand-cream font-bold leading-tight tracking-editorial text-shadow-cinematic"
+          className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-cream font-bold leading-tight tracking-editorial text-shadow-cinematic"
         >
-          Signature of Perfect <span className="text-brand-gold italic font-normal font-serif">taste.</span>
+          Heirloom Kerala <span className="text-brand-gold italic font-normal font-serif">spice blends.</span>
         </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 1.2 }}
+          className="mt-4 text-brand-cream/80 text-sm md:text-base font-sans tracking-wide max-w-lg mx-auto"
+        >
+          Pure, Single-Origin Spices Handcrafted in Wayanad
+        </motion.p>
       </div>
 
       {/* Slide Indicators / Dots */}
