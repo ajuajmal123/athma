@@ -56,7 +56,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ scale: 1.05, rotate: 2 }}
-          className="mb-8 w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-brand-gold/50 shadow-2xl bg-white p-1.5 flex items-center justify-center cursor-pointer transition-all duration-300"
+          className="mb-8 w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-brand-gold/50 shadow-2xl bg-white p-1.5 flex items-center justify-center cursor-pointer transition-all duration-300"
         >
           <div className="w-full h-full rounded-full overflow-hidden relative">
             <Image

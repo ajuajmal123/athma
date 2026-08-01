@@ -8,6 +8,7 @@ export default function ContactSection() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "General Inquiry",
     message: "",
   });
@@ -15,12 +16,12 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formState.name || !formState.email || !formState.message) return;
-    
+    if (!formState.name || !formState.email || !formState.phone || !formState.message) return;
+
     setStatus("submitting");
-    
+
     // Construct WhatsApp message details before clearing state
-    const whatsappText = `Hello Athma Spices,\n\nI have submitted an enquiry on the website:\n\n*Name*: ${formState.name}\n*Email*: ${formState.email}\n*Type*: ${formState.subject}\n*Message*: ${formState.message}`;
+    const whatsappText = `Hello Athma Spices,\n\nI have submitted an enquiry on the website:\n\n*Name*: ${formState.name}\n*Email*: ${formState.email}\n*Mobile*: ${formState.phone}\n*Type*: ${formState.subject}\n*Message*: ${formState.message}`;
     const whatsappUrl = `https://wa.me/917012646402?text=${encodeURIComponent(whatsappText)}`;
 
     // Simulate API request
@@ -28,7 +29,7 @@ export default function ContactSection() {
       setStatus("success");
       // Redirect to WhatsApp in a new tab
       window.open(whatsappUrl, "_blank");
-      setFormState({ name: "", email: "", subject: "General Inquiry", message: "" });
+      setFormState({ name: "", email: "", phone: "", subject: "General Inquiry", message: "" });
     }, 1500);
   };
 
@@ -41,7 +42,7 @@ export default function ContactSection() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
+
           {/* Left Column: Contact Details */}
           <div className="lg:col-span-5 space-y-10">
             <div className="space-y-4">
@@ -156,7 +157,7 @@ export default function ContactSection() {
                         required
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        placeholder="e.g. Liam Anderson"
+                        placeholder="your name"
                         className="w-full bg-brand-green border-b border-brand-cream/20 hover:border-brand-cream/40 focus:border-brand-gold focus:outline-none py-3 text-sm transition-colors text-brand-cream placeholder:text-brand-cream/35"
                       />
                     </div>
@@ -172,28 +173,44 @@ export default function ContactSection() {
                         required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        placeholder="e.g. liam@example.com"
+                        placeholder="your email address"
                         className="w-full bg-brand-green border-b border-brand-cream/20 hover:border-brand-cream/40 focus:border-brand-gold focus:outline-none py-3 text-sm transition-colors text-brand-cream placeholder:text-brand-cream/35"
                       />
                     </div>
-                  </div>
 
-                  {/* Subject Dropdown */}
-                  <div className="space-y-2">
-                    <label htmlFor="form-subject" className="text-[10px] tracking-widest uppercase font-bold text-brand-gold block">
-                      Inquiry Type
-                    </label>
-                    <select
-                      id="form-subject"
-                      value={formState.subject}
-                      onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                      className="w-full bg-brand-green border-b border-brand-cream/20 focus:border-brand-gold focus:outline-none py-3 text-sm transition-colors text-brand-cream cursor-pointer"
-                    >
-                      <option className="bg-brand-green-dark" value="General Inquiry">General Inquiry</option>
-                      <option className="bg-brand-green-dark" value="Bespoke Milling">Bespoke Spice Milling</option>
-                      <option className="bg-brand-green-dark" value="Wholesale & Export">Wholesale & Export</option>
-                      <option className="bg-brand-green-dark" value="Mill Visit">Mill Visit & Tasting</option>
-                    </select>
+                    {/* Mobile Number */}
+                    <div className="space-y-2">
+                      <label htmlFor="form-phone" className="text-[10px] tracking-widest uppercase font-bold text-brand-gold block">
+                        Mobile Number
+                      </label>
+                      <input
+                        id="form-phone"
+                        type="tel"
+                        required
+                        value={formState.phone}
+                        onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                        placeholder="your mobile number"
+                        className="w-full bg-brand-green border-b border-brand-cream/20 hover:border-brand-cream/40 focus:border-brand-gold focus:outline-none py-3 text-sm transition-colors text-brand-cream placeholder:text-brand-cream/35"
+                      />
+                    </div>
+
+                    {/* Subject Dropdown */}
+                    <div className="space-y-2">
+                      <label htmlFor="form-subject" className="text-[10px] tracking-widest uppercase font-bold text-brand-gold block">
+                        Inquiry Type
+                      </label>
+                      <select
+                        id="form-subject"
+                        value={formState.subject}
+                        onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+                        className="w-full bg-brand-green border-b border-brand-cream/20 focus:border-brand-gold focus:outline-none py-3 text-sm transition-colors text-brand-cream cursor-pointer"
+                      >
+                        <option className="bg-brand-green-dark" value="General Inquiry">General Inquiry</option>
+                        <option className="bg-brand-green-dark" value="Bespoke Milling">Bespoke Spice Milling</option>
+                        <option className="bg-brand-green-dark" value="Wholesale & Export">Wholesale & Export</option>
+                        <option className="bg-brand-green-dark" value="Mill Visit">Mill Visit & Tasting</option>
+                      </select>
+                    </div>
                   </div>
 
                   {/* Message */}

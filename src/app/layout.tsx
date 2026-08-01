@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "ATHMA SPICES | The Soul of Every Curry",
   description: "Authentic, pure, Kerala-rooted spices ground fresh. Discover the heritage, culinary traditions, and stories behind our gourmet curry powders and spice blends.",
   keywords: ["Kerala Spices", "Gourmet Spices", "Curry Powder", "Malabar Fish Curry", "Authentic Spices", "Athma Spices", "Pure Spices"],
+  icons: {
+    icon: "/images/slogan.jpeg",
+  },
   openGraph: {
     title: "ATHMA SPICES | The Soul of Every Curry",
     description: "Authentic, pure, Kerala-rooted spices ground fresh. Discover the heritage, culinary traditions, and stories behind our gourmet curry powders and spice blends.",
