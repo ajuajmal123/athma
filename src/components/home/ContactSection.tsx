@@ -14,7 +14,7 @@ export default function ContactSection() {
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.phone || !formState.message) return;
 
@@ -24,13 +24,21 @@ export default function ContactSection() {
     const whatsappText = `Hello Athma Spices,\n\nI have submitted an enquiry on the website:\n\n*Name*: ${formState.name}\n*Email*: ${formState.email}\n*Mobile*: ${formState.phone}\n*Type*: ${formState.subject}\n*Message*: ${formState.message}`;
     const whatsappUrl = `https://wa.me/917012646402?text=${encodeURIComponent(whatsappText)}`;
 
-    // Simulate API request
-    setTimeout(() => {
-      setStatus("success");
-      // Redirect to WhatsApp in a new tab
-      window.open(whatsappUrl, "_blank");
-      setFormState({ name: "", email: "", phone: "", subject: "General Inquiry", message: "" });
-    }, 1500);
+    // API request to Next.js route (Handles Email + Excel)
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState)
+      });
+    } catch (err) {
+      console.error("Failed to submit to server:", err);
+    }
+
+    setStatus("success");
+    // Redirect to WhatsApp in a new tab
+    window.open(whatsappUrl, "_blank");
+    setFormState({ name: "", email: "", phone: "", subject: "General Inquiry", message: "" });
   };
 
   return (

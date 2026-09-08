@@ -38,7 +38,7 @@ export default function Hero() {
               initial={{ scale: 1.05, x: -8, y: -5 }}
               animate={{ scale: 1.15, x: 8, y: 5 }}
               transition={{ duration: 6, ease: "linear" }}
-              className="w-full h-full bg-cover bg-center"
+              className="w-full h-full bg-contain md:bg-cover bg-no-repeat bg-center"
               style={{ backgroundImage: `url(${images[currentIndex]})` }}
             />
           </motion.div>
