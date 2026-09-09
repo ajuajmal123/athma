@@ -24,7 +24,7 @@ export default function ContactSection() {
     const whatsappText = `Hello Athma Spices,\n\nI have submitted an enquiry on the website:\n\n*Name*: ${formState.name}\n*Email*: ${formState.email}\n*Mobile*: ${formState.phone}\n*Type*: ${formState.subject}\n*Message*: ${formState.message}`;
     const whatsappUrl = `https://wa.me/917012646402?text=${encodeURIComponent(whatsappText)}`;
 
-    // API request to Next.js route (Handles Email + Excel)
+    // API request to Next.js route (Handles Email)
     try {
       await fetch('/api/contact', {
         method: 'POST',
@@ -36,8 +36,8 @@ export default function ContactSection() {
     }
 
     setStatus("success");
-    // Redirect to WhatsApp in a new tab
-    window.open(whatsappUrl, "_blank");
+    // Redirect to WhatsApp directly to avoid popup blockers
+    window.location.href = whatsappUrl;
     setFormState({ name: "", email: "", phone: "", subject: "General Inquiry", message: "" });
   };
 

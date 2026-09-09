@@ -1,46 +1,11 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { google } from 'googleapis';
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name, email, phone, subject, message } = body;
 
-    // 1. Write to Google Sheets (Vercel Compatible)
-    if (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY && process.env.GOOGLE_SHEET_ID) {
-      try {
-        // Authenticate via a Google Service Account
-        const auth = new google.auth.GoogleAuth({
-          credentials: {
-            client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-            // Next.js (or any env loader) might require replacing literal `\n` mapped in strings so the key parses properly
-            private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-          },
-          scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-        });
-
-        const sheets = google.sheets({ version: 'v4', auth });
-        
-        // Append a new row to the sheet (defaults to appending to the end)
-        await sheets.spreadsheets.values.append({
-          spreadsheetId: process.env.GOOGLE_SHEET_ID,
-          range: 'Sheet1!A:F', // Assumes a generic Sheet1 name
-          valueInputOption: 'USER_ENTERED',
-          requestBody: {
-            values: [
-              [new Date().toLocaleString(), name, email, phone, subject, message]
-            ]
-          }
-        });
-      } catch (sheetError) {
-        console.error("Google Sheets API Error:", sheetError);
-      }
-    } else {
-      console.warn("Google Sheets credentials are not fully configured in environment variables.");
-    }
-
-    // 2. Send Email
+    // Send Email Notifications
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -50,14 +15,27 @@ export async function POST(req: Request) {
         },
       });
 
-      const mailOptions = {
+      // 1. Email to Athma Spices Admin
+      const adminMailOptions = {
         from: process.env.SMTP_USER,
         to: 'athmaspices@gmail.com',
         subject: `New Web Enquiry: ${subject}`,
         text: `You have received a new enquiry from the website.\n\nName: ${name}\nEmail: ${email}\nMobile: ${phone}\nType: ${subject}\n\nMessage:\n${message}`,
       };
 
-      await transporter.sendMail(mailOptions);
+      // 2. Automated Thank You Email to Customer
+      const customerMailOptions = {
+        from: process.env.SMTP_USER,
+        to: email, // send auto-reply to the submitted email
+        subject: `Thank you for contacting Athma Spices - ${subject}`,
+        text: `Dear ${name},\n\nThank you for reaching out to Athma Spices!\n\nWe have received your enquiry regarding "${subject}" and our team will get back to you shortly.\n\nHere is a copy of your message:\n${message}\n\nBest regards,\nThe Athma Spices Team\n+91 70126 46402\nathmaspices@gmail.com`,
+      };
+
+      // Send both emails
+      await transporter.sendMail(adminMailOptions);
+      if (email) {
+        await transporter.sendMail(customerMailOptions);
+      }
     } else {
       console.warn("SMTP_USER and SMTP_PASS are not set. Email was not sent.");
     }
