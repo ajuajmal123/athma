@@ -12,7 +12,7 @@ export default function ProductShowcase() {
   return (
     <section id="spices" className="py-24 bg-brand-cream border-t border-brand-cream-dark/30">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        
+
         {/* Centered Header */}
         <div className="text-center mb-16 space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center space-x-2 justify-center">
@@ -29,7 +29,7 @@ export default function ProductShowcase() {
 
         {/* 4-Column Pure Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
-          {products.map((product, idx) => (
+          {products.slice(0, 4).map((product, idx) => (
             <Link
               key={product.id}
               href={`/products?id=${product.id}`}
